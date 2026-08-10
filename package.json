@@ -1,0 +1,22 @@
+{
+  "name": "ai-sdlc-ecommerce",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A lightweight Node.js ecommerce app with Playwright tests for an AI-driven SDLC capstone.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "lint": "echo \"No lint configured\"",
+    "prepare": "npx playwright install"
+  },
+  "dependencies": {
+    "express": "^4.18.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.38.0",
+    "nodemon": "^3.0.1"
+  }
+}
