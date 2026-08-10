@@ -1,0 +1,40 @@
+[
+  {
+    "orderId": "ORD-1786344294805",
+    "createdAt": "2026-08-10T06:44:54.805Z",
+    "customer": {
+      "name": "Test User",
+      "email": "test@example.com",
+      "address": "123 Main Street"
+    },
+    "lineItems": [
+      {
+        "productId": "p1",
+        "quantity": 1,
+        "name": "Smart Home Speaker",
+        "price": 49.99,
+        "total": 49.99
+      }
+    ],
+    "total": 49.99
+  },
+  {
+    "orderId": "ORD-1786344294868",
+    "createdAt": "2026-08-10T06:44:54.868Z",
+    "customer": {
+      "name": "History User",
+      "email": "history@example.com",
+      "address": "456 History Lane"
+    },
+    "lineItems": [
+      {
+        "productId": "p1",
+        "quantity": 1,
+        "name": "Smart Home Speaker",
+        "price": 49.99,
+        "total": 49.99
+      }
+    ],
+    "total": 49.99
+  }
+]

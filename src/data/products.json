@@ -1,0 +1,30 @@
+[
+  {
+    "id": "p1",
+    "name": "Smart Home Speaker",
+    "description": "Voice-controlled speaker with smart assistant support.",
+    "price": 49.99,
+    "image": "speaker.jpg"
+  },
+  {
+    "id": "p2",
+    "name": "Wireless Headphones",
+    "description": "Noise-cancelling over-ear headphones for immersive sound.",
+    "price": 89.99,
+    "image": "headphones.jpg"
+  },
+  {
+    "id": "p3",
+    "name": "Fitness Tracker",
+    "description": "Water-resistant tracker with heart rate monitoring.",
+    "price": 59.99,
+    "image": "tracker.jpg"
+  },
+  {
+    "id": "p4",
+    "name": "Portable Charger",
+    "description": "Fast-charging power bank with dual USB ports.",
+    "price": 29.99,
+    "image": "charger.jpg"
+  }
+]
