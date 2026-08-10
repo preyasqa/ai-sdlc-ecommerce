@@ -4,7 +4,8 @@
 
 - **Express API Server**: Serves product catalog and checkout endpoints, and hosts the static frontend.
 - **Static Frontend**: HTML/CSS/JavaScript application that consumes the REST API and manages a client-side cart.
-- **Playwright Test Suite**: End-to-end tests that verify product discovery, cart interaction, and checkout behavior.
+- **Order Persistence**: The server stores completed orders in a lightweight JSON store so purchase data is preserved between restarts.
+- **Playwright Test Suite**: End-to-end tests that verify product discovery, cart interaction, checkout behavior, and order persistence.
 
 ## Data Flow
 

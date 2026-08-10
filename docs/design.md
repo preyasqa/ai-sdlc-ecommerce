@@ -15,5 +15,7 @@
 ## Low-Level Design
 
 - `src/server.js` provides the REST API and hosts static assets.
+- `src/server.js` also persists order history to a lightweight JSON store and exposes an orders API.
 - `public/app.js` manages cart state, product listing, and checkout submission.
+- `public/index.html` enforces required customer address input for checkout.
 - `playwright.config.js` launches the app during tests and runs end-to-end scenarios.

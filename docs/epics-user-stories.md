@@ -10,8 +10,13 @@
 
 ## Epic 3: Checkout and Order Submission
 - As a shopper, I want to submit my order with customer details so that I can complete a purchase.
+- As a shopper, I want my order to be saved so that purchase history is available for review.
 - As a QA engineer, I want checkout validation so that empty orders and missing customer details are rejected.
 
-## Epic 4: Testing and Quality Assurance
+## Epic 4: Order Persistence and History
+- As a developer, I want order history to be persisted on the server so that completed purchases are stored reliably.
+- As a QA engineer, I want an orders API so that backend order state can be validated by automated tests.
+
+## Epic 5: Testing and Quality Assurance
 - As a QA engineer, I want automated Playwright tests so that critical flows are validated on each build.
 - As a project stakeholder, I want documentation describing the architecture and acceptance criteria.

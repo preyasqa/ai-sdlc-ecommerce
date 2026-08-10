@@ -88,12 +88,14 @@ function renderCartItems() {
       <div>
         <strong>${product?.name ?? 'Unknown item'}</strong>
         <p>${formatCurrency(product?.price ?? 0)} × ${item.quantity}</p>
-      </div>
-      <div>
-        <button type="button" data-action="decrease" data-product-id="${item.productId}">−</button>
-        <button type="button" data-action="increase" data-product-id="${item.productId}">+</button>
-      </div>
-    `;
+          <p>Total: ${formatCurrency((product?.price ?? 0) * item.quantity)}</p>
+        </div>
+        <div>
+          <button type="button" data-action="decrease" data-product-id="${item.productId}">−</button>
+          <button type="button" data-action="increase" data-product-id="${item.productId}">+</button>
+          <button type="button" data-action="remove" data-product-id="${item.productId}">Remove</button>
+        </div>
+      `;
     cartItemsContainer.appendChild(itemRow);
   });
 
@@ -143,6 +145,11 @@ cartItemsContainer.addEventListener('click', (event) => {
     updateCartItem(productId, 1);
   } else if (action === 'decrease') {
     updateCartItem(productId, -1);
+  } else if (action === 'remove') {
+    cart = cart.filter((entry) => entry.productId !== productId);
+    saveCart();
+    updateCartCount();
+    renderCartItems();
   }
 });
 

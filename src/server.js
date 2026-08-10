@@ -7,45 +7,86 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+const productsPath = path.join(__dirname, 'data', 'products.json');
+const ordersPath = path.join(__dirname, 'data', 'orders.json');
+
 function loadProducts() {
-  const dataPath = path.join(__dirname, 'data', 'products.json');
-  return JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+  return JSON.parse(fs.readFileSync(productsPath, 'utf8'));
+}
+
+function loadOrders() {
+  try {
+    return JSON.parse(fs.readFileSync(ordersPath, 'utf8'));
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveOrders(orders) {
+  fs.writeFileSync(ordersPath, JSON.stringify(orders, null, 2), 'utf8');
 }
 
 app.get('/api/products', (req, res) => {
   res.json(loadProducts());
 });
 
-app.post('/api/checkout', (req, res) => {
-  const { cart, customer } = req.body;
+app.get('/api/orders', (req, res) => {
+  res.json(loadOrders());
+});
 
-  if (!Array.isArray(cart) || cart.length === 0) {
+app.post('/api/checkout', (req, res) => {
+  const cart = Array.isArray(req.body.cart) ? req.body.cart : [];
+  const customer = req.body.customer || {};
+
+  if (cart.length === 0) {
     return res.status(400).json({ error: 'Cart cannot be empty.' });
   }
 
-  if (!customer || !customer.name || !customer.email) {
-    return res.status(400).json({ error: 'Customer name and email are required.' });
+  if (!customer.name || !customer.email || !customer.address) {
+    return res.status(400).json({ error: 'Customer name, email, and address are required.' });
   }
 
   const products = loadProducts();
-  const lineItems = cart.map((item) => {
+  const lineItems = [];
+
+  for (const item of cart) {
+    if (!item || typeof item.productId !== 'string' || typeof item.quantity !== 'number' || item.quantity < 1) {
+      return res.status(400).json({ error: 'Each cart item must include a valid productId and a quantity of at least 1.' });
+    }
+
     const product = products.find((p) => p.id === item.productId);
-    return {
+    if (!product) {
+      return res.status(400).json({ error: `Product not found: ${item.productId}` });
+    }
+
+    lineItems.push({
       productId: item.productId,
       quantity: item.quantity,
-      name: product ? product.name : 'Unknown product',
-      price: product ? product.price : 0,
-      total: product ? product.price * item.quantity : 0
-    };
-  });
+      name: product.name,
+      price: product.price,
+      total: product.price * item.quantity
+    });
+  }
 
   const total = lineItems.reduce((sum, item) => sum + item.total, 0);
+  if (total <= 0) {
+    return res.status(400).json({ error: 'Order total must be greater than zero.' });
+  }
 
-  res.json({
+  const order = {
     orderId: `ORD-${Date.now()}`,
+    createdAt: new Date().toISOString(),
     customer,
     lineItems,
-    total,
+    total
+  };
+
+  const orders = loadOrders();
+  orders.push(order);
+  saveOrders(orders);
+
+  res.json({
+    ...order,
     message: `Thank you, ${customer.name}! Your order has been placed.`
   });
 });

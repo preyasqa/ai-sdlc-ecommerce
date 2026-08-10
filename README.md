@@ -6,7 +6,8 @@ A lightweight ecommerce application built with Node.js and Express, designed for
 
 - Product catalog served by REST API
 - Client-side shopping cart and checkout flow
-- Simple order validation and order confirmation
+- Server-side order persistence and order history API
+- Required checkout address validation and order confirmation
 - Playwright end-to-end tests for core user journeys
 - Project documentation for epics, architecture, and test cases
 
