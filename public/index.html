@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI SDLC Ecommerce Store</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>AI SDLC Store</h1>
+      <p>Lightweight ecommerce app with a human-in-the-loop QA workflow.</p>
+    </div>
+    <button id="view-cart-button">View Cart (<span id="cart-count">0</span>)</button>
+  </header>
+
+  <main>
+    <section id="product-list" class="product-grid"></section>
+  </main>
+
+  <dialog id="cart-dialog">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div class="cart-summary">
+      <span>Total:</span>
+      <strong id="cart-total">$0.00</strong>
+    </div>
+    <button id="checkout-button">Checkout</button>
+    <button id="close-cart-button" class="secondary">Close</button>
+  </dialog>
+
+  <dialog id="checkout-dialog">
+    <h2>Checkout</h2>
+    <form id="checkout-form">
+      <label>
+        Name
+        <input type="text" name="name" required />
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" required />
+      </label>
+      <label>
+        Address
+        <textarea name="address" rows="3" required></textarea>
+      </label>
+      <button type="submit">Submit Order</button>
+      <button type="button" id="cancel-checkout" class="secondary">Cancel</button>
+    </form>
+    <div id="order-response" class="order-response"></div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
